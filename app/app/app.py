@@ -3,8 +3,7 @@ from rxconfig import config
 
 import reflex as rx
 
-docs_url = "https://reflex.dev/docs/getting-started/introduction"
-filename = f"{config.app_name}/{config.app_name}.py"
+
 
 
 class State(rx.State):
@@ -12,31 +11,40 @@ class State(rx.State):
 
     pass
 
+def qa(question: str, answer: str) -> rx.Component:
+    return rx.box(
+        rx.box(question, text_align="rigth"),
+        rx.box(answer, text_align="left"),
+        margin_y="1em",
+    )
+
+def chat() -> rx.Component:
+    qa_pairs = [
+        (
+            "Why is Reflex?",
+            "A way to build wewb apps in pure Python",
+        ),
+        (
+            "What can I make with it?",
+            "Anything form a simple website yo a complex web app!",
+        )
+    ]
+    return rx.box(
+        *[
+            qa(question, answer) for question, answer in qa_pairs
+        ]
+    ) 
+
+def action_bar() -> rx.Component:
+    return rx.hstack(
+        rx.input(placeholder="Ask a question"),
+        rx.button("Ask")
+    )
 
 def index() -> rx.Component:
-    return rx.fragment(
-        rx.color_mode_button(rx.color_mode_icon(), float="right"),
-        rx.vstack(
-            rx.heading("Welcome to Reflex!", font_size="2em"),
-            rx.box("Get started by editing ", rx.code(filename, font_size="1em")),
-            rx.link(
-                "Check out our docs!",
-                href=docs_url,
-                border="0.1em solid",
-                padding="0.5em",
-                border_radius="0.5em",
-                _hover={
-                    "color": rx.color_mode_cond(
-                        light="rgb(107,99,246)",
-                        dark="rgb(179, 175, 255)",
-                    )
-                },
-            ),
-            spacing="1.5em",
-            font_size="2em",
-            padding_top="10%",
-        ),
-    )
+    return rx.container(
+        chat(),
+        action_bar())
 
 
 # Add state and page to the app.

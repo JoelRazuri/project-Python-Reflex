@@ -1,11 +1,9 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/router"
-import { E, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, uploadFiles, useEventLoop } from "/utils/state"
+import { E, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, set_val, uploadFiles, useEventLoop } from "/utils/state"
 import { EventLoopContext, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Box, Button, Code, Heading, Link, Text, useColorMode, VStack } from "@chakra-ui/react"
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
-import NextLink from "next/link"
+import { Box, Button, Container, HStack, Input, Text, useColorMode } from "@chakra-ui/react"
 import NextHead from "next/head"
 
 
@@ -37,35 +35,32 @@ export default function Component() {
 
   return (
   <Fragment><Fragment>
-  <Fragment>
-  <Button onClick={toggleColorMode} sx={{"float": "right"}}>
-  <Fragment>
-  {isTrue((colorMode === "light")) ? (
-  <Fragment>
-  <SunIcon/>
-</Fragment>
-) : (
-  <Fragment>
-  <MoonIcon/>
-</Fragment>
-)}
-</Fragment>
-</Button>
-  <VStack spacing={`1.5em`} sx={{"fontSize": "2em", "paddingTop": "10%"}}>
-  <Heading sx={{"fontSize": "2em"}}>
-  {`Welcome to Reflex!`}
-</Heading>
+  <Container>
   <Box>
-  {`Get started by editing `}
-  <Code sx={{"fontSize": "1em"}}>
-  {`app/app.py`}
-</Code>
+  <Box sx={{"marginY": "1em"}}>
+  <Box sx={{"textAlign": "rigth"}}>
+  {`Why is Reflex?`}
 </Box>
-  <Link as={NextLink} href={`https://reflex.dev/docs/getting-started/introduction`} sx={{"border": "0.1em solid", "padding": "0.5em", "borderRadius": "0.5em", "_hover": {"color": isTrue((colorMode === "light")) ? `rgb(107,99,246)` : `rgb(179, 175, 255)`}}}>
-  {`Check out our docs!`}
-</Link>
-</VStack>
-</Fragment>
+  <Box sx={{"textAlign": "left"}}>
+  {`A way to build wewb apps in pure Python`}
+</Box>
+</Box>
+  <Box sx={{"marginY": "1em"}}>
+  <Box sx={{"textAlign": "rigth"}}>
+  {`What can I make with it?`}
+</Box>
+  <Box sx={{"textAlign": "left"}}>
+  {`Anything form a simple website yo a complex web app!`}
+</Box>
+</Box>
+</Box>
+  <HStack>
+  <Input placeholder={`Ask a question`} type={`text`}/>
+  <Button>
+  {`Ask`}
+</Button>
+</HStack>
+</Container>
   <NextHead>
   <title>
   {`Reflex App`}
