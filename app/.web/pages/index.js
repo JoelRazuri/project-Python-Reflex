@@ -4,6 +4,7 @@ import { E, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventD
 import { EventLoopContext, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
 import { Box, Button, Container, HStack, Input, Text, useColorMode } from "@chakra-ui/react"
+import { DebounceInput } from "react-debounce-input"
 import NextHead from "next/head"
 
 
@@ -37,34 +38,24 @@ export default function Component() {
   <Fragment><Fragment>
   <Container>
   <Box>
-  <Box sx={{"marginY": "1em"}}>
+  {state.chat_history.map((xvwaumdd, i) => (
+  <Box key={i} sx={{"marginY": "1em"}}>
   <Box sx={{"textAlign": "right"}}>
   <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#F5EFFE", "marginLeft": "20%"}}>
-  {`What is Reflex?`}
+  {xvwaumdd.at(0)}
 </Text>
 </Box>
   <Box sx={{"textAlign": "left"}}>
   <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#DEEAFD", "marginRight": "20%"}}>
-  {`A way to build web apps in pure Python!`}
+  {xvwaumdd.at(1)}
 </Text>
 </Box>
 </Box>
-  <Box sx={{"marginY": "1em"}}>
-  <Box sx={{"textAlign": "right"}}>
-  <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#F5EFFE", "marginLeft": "20%"}}>
-  {`What can I make with it?`}
-</Text>
-</Box>
-  <Box sx={{"textAlign": "left"}}>
-  <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#DEEAFD", "marginRight": "20%"}}>
-  {`Anything from a simple website to a complex web app!`}
-</Text>
-</Box>
-</Box>
+))}
 </Box>
   <HStack>
-  <Input placeholder={`Ask a question`} sx={{"borderWidth": "1px", "padding": "1em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px"}} type={`text`}/>
-  <Button sx={{"bg": "#CEFFEE", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px"}}>
+  <DebounceInput debounceTimeout={50} element={Input} onChange={_e => Event([E("state.set_question", {value:_e.target.value})], _e)} placeholder={`Ask a question`} sx={{"borderWidth": "1px", "padding": "1em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px"}} type={`text`} value={state.question}/>
+  <Button onClick={_e => Event([E("state.answer", {})], _e)} sx={{"bg": "#CEFFEE", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px"}}>
   {`Ask`}
 </Button>
 </HStack>
