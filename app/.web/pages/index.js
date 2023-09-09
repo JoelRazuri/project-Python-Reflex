@@ -38,16 +38,16 @@ export default function Component() {
   <Fragment><Fragment>
   <Container>
   <Box>
-  {state.chat_history.map((xvwaumdd, i) => (
+  {state.chat_history.map((qrjwtyyw, i) => (
   <Box key={i} sx={{"marginY": "1em"}}>
   <Box sx={{"textAlign": "right"}}>
   <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#F5EFFE", "marginLeft": "20%"}}>
-  {xvwaumdd.at(0)}
+  {qrjwtyyw.at(0)}
 </Text>
 </Box>
   <Box sx={{"textAlign": "left"}}>
   <Text sx={{"padding": "1em", "borderRadius": "5px", "marginY": "0.5em", "boxShadow": "rgba(0, 0, 0, 0.15) 0px 2px 8px", "maxWidth": "30em", "display": "inline-block", "bg": "#DEEAFD", "marginRight": "20%"}}>
-  {xvwaumdd.at(1)}
+  {qrjwtyyw.at(1)}
 </Text>
 </Box>
 </Box>
