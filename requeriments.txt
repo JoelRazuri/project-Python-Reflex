@@ -31,6 +31,7 @@ plotly==5.16.1
 psutil==5.9.5
 pydantic==1.10.12
 Pygments==2.16.1
+python-decouple==3.8
 python-engineio==4.6.1
 python-multipart==0.0.5
 python-socketio==5.8.0
